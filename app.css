@@ -1,0 +1,193 @@
+/* app.css — Tema GLASS + GRADIENT aplicado a la estructura actual */
+
+/* === Tokens === */
+:root{
+  --bg1:#0c1445;
+  --bg2:#1e3a8a;
+  --acc:#22d3ee;
+  --acc2:#a78bfa;
+  --text:#e5e7eb;
+  --muted:#94a3b8;
+  --border:#1e40af;
+  --card-bg:rgba(15,23,42,0.3);
+  --shadow-color:rgba(0,0,0,0.35);
+  --shadow-light:rgba(34,211,238,0.2);
+  --danger:#ef4444;
+  --danger-hover:#dc2626;
+}
+
+/* Reset mínimo */
+*{box-sizing:border-box;margin:0;padding:0}
+
+/* Fondo y tipografías */
+body{
+  font-family:'Poppins',system-ui,-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif;
+  color:var(--text);
+  background:linear-gradient(160deg,#0c1445 0%,#1e3a8a 25%,#0891b2 50%,#0c4a6e 75%,#1e293b 100%);
+  background-attachment:fixed;
+  min-height:100vh;
+  display:flex;
+  justify-content:center;
+  align-items:flex-start;
+  padding:2rem 1rem;
+}
+
+/* Utilidades */
+.hidden{display:none !important}
+
+/* Contenedor */
+.container{width:100%;max-width:1000px;text-align:center}
+
+/* Titulares */
+h1{
+  font-family:'Montserrat',sans-serif;
+  font-size:clamp(2rem,5vw,3.2rem);
+  font-weight:700;
+  margin-bottom:0.5rem;
+  text-shadow:0 4px 15px var(--shadow-color);
+}
+.subtitle{
+  color:var(--muted);
+  margin-bottom:2rem;
+  font-size:1.05rem;
+}
+
+/* Área de subida */
+.upload-area{margin-bottom:1.5rem}
+.upload-label{
+  display:inline-flex;align-items:center;gap:.75rem;
+  padding:.8rem 1.4rem;
+  background:var(--card-bg);
+  color:var(--text);
+  border:1px solid var(--border);
+  border-radius:12px;
+  cursor:pointer;
+  transition:transform .2s ease, box-shadow .2s ease, background-color .2s ease, border-color .2s ease;
+  backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);
+  box-shadow:0 8px 20px var(--shadow-color);
+}
+.upload-label:hover{
+  transform:translateY(-2px);
+  box-shadow:0 12px 28px var(--shadow-color),0 0 0 4px var(--shadow-light);
+  border-color:var(--acc);
+}
+
+/* Vista previa de imágenes subidas - CORREGIDO */
+.preview-section{margin:1.5rem 0}
+.preview-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fill,minmax(130px,1fr));
+  gap:1rem;margin-bottom:1.5rem
+}
+.preview-item{
+  aspect-ratio:1/1;border-radius:12px;overflow:hidden;
+  border:2px solid var(--border);
+  background:var(--card-bg);
+  box-shadow:0 6px 20px var(--shadow-color);
+  transition:transform .2s ease,border-color .2s ease;
+  position:relative;
+  display:flex;align-items:center;justify-content:center;
+  padding:0.5rem
+}
+.preview-item img{
+  max-width:100%;
+  max-height:100%;
+  object-fit:contain;
+  background:transparent
+}
+.preview-item:hover{transform:translateY(-3px);border-color:var(--acc)}
+.remove-preview{
+  position:absolute;top:4px;right:4px;
+  width:24px;height:24px;
+  background:var(--danger);color:white;
+  border:none;border-radius:50%;
+  cursor:pointer;font-size:12px;
+  display:flex;align-items:center;justify-content:center;
+  opacity:0;transition:opacity .2s ease
+}
+.preview-item:hover .remove-preview{opacity:1}
+
+/* Sección de procesamiento */
+.processing-section{
+  width:100%;max-width:520px;margin:0 auto 1.5rem auto;padding:1rem;
+  background:var(--card-bg);
+  border:1px solid var(--border);
+  border-radius:16px;
+  box-shadow:0 10px 30px var(--shadow-color);
+  backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);
+  text-align:left;
+}
+#progress-text{margin-bottom:.75rem;font-weight:600}
+.progress-bar-container{
+  width:100%;height:10px;background:rgba(255,255,255,0.08);
+  border:1px solid var(--border);border-radius:999px;overflow:hidden;margin-bottom:1rem
+}
+.progress-bar{
+  width:0%;height:100%;
+  background:linear-gradient(135deg,var(--acc),var(--acc2));
+  border-radius:999px;transition:width .3s ease
+}
+.spinner-container{display:flex;justify-content:center}
+.spinner{
+  width:30px;height:30px;border:4px solid rgba(0,0,0,0.1);
+  border-left-color:#0ea5e9;border-radius:50%;
+  animation:spin 1s linear infinite
+}
+@keyframes spin{to{transform:rotate(360deg)}}
+
+/* Botones de acción */
+.button-start,.download-single-btn{
+  color:#fff;font-size:.9rem;font-weight:600;
+  padding:.7rem 1.2rem;border:none;border-radius:10px;
+  cursor:pointer;transition:transform .2s ease,opacity .2s ease,box-shadow .2s ease;
+  text-decoration:none;display:inline-flex;align-items:center;justify-content:center;gap:.5rem
+}
+.button-start{
+  background:linear-gradient(135deg,var(--acc),var(--acc2));
+  box-shadow:0 8px 20px rgba(167,139,250,.25);
+  padding:.85rem 2rem;font-size:1rem
+}
+.button-start:hover:not(:disabled){transform:translateY(-2px);opacity:.95}
+.button-start:disabled{opacity:.5;cursor:not-allowed;transform:none}
+
+.download-single-btn{
+  background:linear-gradient(135deg,#10b981,#059669);
+  box-shadow:0 4px 12px rgba(16,185,129,.3);
+  font-size:.8rem;padding:.6rem 1rem
+}
+.download-single-btn:hover{transform:translateY(-2px);opacity:.95}
+
+/* Galería de resultados */
+.gallery-title{margin:1.5rem 0;color:var(--text)}
+.results-gallery{
+  display:grid;
+  grid-template-columns:repeat(auto-fill,minmax(200px,1fr));
+  gap:1.2rem;margin-bottom:2rem
+}
+.gallery-item{
+  aspect-ratio:1/1;border-radius:16px;overflow:hidden;
+  border:1px solid var(--border);background:var(--card-bg);
+  box-shadow:0 8px 25px var(--shadow-color);
+  transition:transform .3s ease,box-shadow .3s ease;
+  position:relative;
+  display:flex;flex-direction:column
+}
+.gallery-item img{width:100%;height:80%;object-fit:contain;background:transparent}
+.gallery-item-actions{
+  padding:.75rem;
+  border-top:1px solid var(--border);
+  background:var(--card-bg)
+}
+.gallery-item:hover{transform:translateY(-6px);box-shadow:0 12px 35px var(--shadow-color),0 0 15px var(--shadow-light)}
+
+/* Mensajes de error */
+.error-message{
+  margin-top:1.5rem;color:#fff;background:rgba(239,68,68,0.15);
+  padding:.75rem;border-radius:12px;border:1px solid var(--danger)
+}
+
+/* Responsivo suave */
+@media (min-width:768px){
+  .results-gallery{grid-template-columns:repeat(auto-fill,minmax(220px,1fr))}
+  .preview-grid{grid-template-columns:repeat(auto-fill,minmax(140px,1fr))}
+}
