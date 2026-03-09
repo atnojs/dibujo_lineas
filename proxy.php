@@ -4,7 +4,8 @@ header('Content-Type: application/json');
 
 // --- CONFIGURACIÓN IMPORTANTE ---
 // Lee la clave de API desde la variable de entorno configurada en .htaccess
-$apiKey = getenv('C'); 
+$apiKey = getenv('C');
+
 
 // VERIFICACIÓN: Si la clave no se encuentra, detiene la ejecución con un error.
 if ($apiKey === false || empty($apiKey)) {
@@ -16,7 +17,8 @@ if ($apiKey === false || empty($apiKey)) {
 
 // --- MODELO ACTUALIZADO ---
 // Modelo de Google AI a utilizar. Cambiado al modelo más reciente.
-$model = 'gemini-3.1-flash-image-preview'; 
+$model = 'gemini-3.1-flash-image-preview';
+
 
 // URL del punto de enlace (endpoint) del API de Google AI.
 $apiUrl = "https://generativelanguage.googleapis.com/v1beta/models/{$model}:generateContent?key={$apiKey}";
