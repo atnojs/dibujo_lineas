@@ -170,8 +170,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // --- FUNCIONES AUXILIARES ---
     function updateProgress() {
-        progressText.textContent = `Procesando ${processedCount} de ${totalImages}...`;
-        const percentage = totalImages > 0 ? (processedCount / totalImages) * 100 : 0;
+        const displayCount = processedCount >= totalImages ? totalImages : processedCount + 1;
+        progressText.textContent = `Procesando ${displayCount} de ${totalImages}...`;
+        const percentage = totalImages > 0 ? (displayCount / totalImages) * 100 : 0;
         progressBar.style.width = `${percentage}%`;
     }
 
